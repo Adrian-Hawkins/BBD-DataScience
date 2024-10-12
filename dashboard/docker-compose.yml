@@ -15,4 +15,18 @@ services:
       - SA_PASSWORD=YourStrong!Passw0rd
     ports:
       - "1433:1433"
+  
+  jupyter:
+    image: jupyter/minimal-notebook:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../:/app
+    working_dir: /app
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_THEME_MODE=dark
+      - JUPYTER_THEME_LIGHT=''
+      - JUPYTER_THEME_DARK=@jupyterlab/theme-dark-extension
+    command: start-notebook.sh --NotebookApp.token=''
       
